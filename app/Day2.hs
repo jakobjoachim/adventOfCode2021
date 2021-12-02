@@ -1,20 +1,31 @@
 module Day2 where
 
-runTaskOne :: Int
-runTaskOne = uncurry (*) (positionTaskOne inputLong)
+runTask :: Int
+runTask = uncurry (*) $ position $ positionArray inputLong
 
-positionTaskOne :: [(String, Int)] -> (Int,Int)
-positionTaskOne xs = (sum [a | (a,_) <- positionArray xs], sum [b | (_,b) <- positionArray xs])
+position :: [(Int, Int)] -> (Int, Int)
+position = foldl (\(a, b) (x, y) -> (a + x, x * y + b)) (0, 0)
 
+-- (forward, aim)
 positionArray :: [(String, Int)] -> [(Int, Int)]
-positionArray xs = [convertStringPosition (a,b) | (a,b) <- xs]
+positionArray xs =
+  let x = [convertStringPosition (a, b) | (a, b) <- xs]
+      aimArray = createAimArray (map snd x) 0
+   in filter (\(a, _) -> a /= 0) $ addAimRemoveDepth x aimArray
 
 -- (forward, depth)
 convertStringPosition :: (String, Int) -> (Int, Int)
-convertStringPosition ("forward", speed) = (speed,0)
+convertStringPosition ("forward", speed) = (speed, 0)
 convertStringPosition ("down", speed) = (0, speed)
-convertStringPosition ("up", speed) = (0, -speed)
-convertStringPosition (_,_) = (0,0)
+convertStringPosition ("up", speed) = (0, - speed)
+convertStringPosition (_, _) = (0, 0)
+
+addAimRemoveDepth :: [(Int, Int)] -> [Int] -> [(Int, Int)]
+addAimRemoveDepth x = zip [a | (a, _) <- x]
+
+createAimArray :: [Int] -> Int -> [Int]
+createAimArray (x : xs) y = x + y : createAimArray xs (x + y)
+createAimArray [] _ = []
 
 inputShort :: [(String, Int)]
 inputShort =

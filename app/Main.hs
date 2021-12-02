@@ -4,5 +4,5 @@ import Day2
   
 main :: IO ()
 main = do
-  print runTaskOne
+  print runTask
 

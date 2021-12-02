@@ -26,7 +26,7 @@ library:
   source-dirs: src
 
 executables:
-  adventOfCode2021-exe:
+  adventOfCode2021:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
