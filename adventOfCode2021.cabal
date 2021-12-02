@@ -37,6 +37,8 @@ library
 executable adventOfCode2021-exe
   main-is: Main.hs
   other-modules:
+      Day1
+      Day2
       Paths_adventOfCode2021
   hs-source-dirs:
       app
