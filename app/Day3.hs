@@ -1,29 +1,31 @@
 module Day3 where
-  
+
 runTask :: Int
-runTask = 
-  let pair = mapPair $ addTogether (map gammaEpsilon $ inverse inputLong)
-  in binToDec (fst pair) * binToDec (snd pair)
+runTask = co2 [(x,x) | x <- inputLong] * oxygen [(x,x) | x <- inputLong]
 
-mapPair :: (String, String) -> (Int, Int)
-mapPair (a,b) = (read a :: Int, read b :: Int)
+oxygen :: [(String, String)] -> Int
+oxygen [x] = binToDec $ read $ snd x :: Int;
+oxygen xs = oxygen $ tailAllFst $ filter (\x -> head (fst x) == dominantChar (headAllFst xs)) xs
 
-addTogether :: [(String,String)] -> (String, String)
-addTogether = foldl (\(a, b) (x, y) -> (a ++ x, b ++ y)) ("", "")
+co2 :: [(String, String)] -> Int
+co2 [x] = binToDec $ read $ snd x :: Int;
+co2 xs = co2 $ tailAllFst $ filter (\x -> head (fst x) == weakerChar (headAllFst xs)) xs
+
+dominantChar :: String -> Char
+dominantChar xs = if countListOccurrences xs '1' >= countListOccurrences xs '0' then '1' else '0'
+
+weakerChar :: String -> Char
+weakerChar xs = if countListOccurrences xs '1' < countListOccurrences xs '0' then '1' else '0'
 
 binToDec :: Integral i => i -> i
 binToDec 0 = 0
 binToDec i = 2 * binToDec (div i 10) + mod i 10
-  
-gammaEpsilon :: String -> (String,String)
-gammaEpsilon xs = if countListComp xs '1' > countListComp xs '0' then ("1","0") else ("0","1")
---gamma x = if (fromIntegral (length x) / 2) > sum x then 1 else 0
 
-countListComp :: Eq a => [a] -> a -> Int 
-countListComp [] _ = 0
-countListComp xs find = length ys
+countListOccurrences :: Eq a => [a] -> a -> Int
+countListOccurrences [] _ = 0
+countListOccurrences xs find = length ys
     where ys = [y | y <- xs, y == find]
-    
+
 inverse :: [String] -> [String]
 inverse xs = inverse' xs []
 
@@ -31,11 +33,17 @@ inverse' :: [String] -> [String] -> [String]
 inverse' [] ys = init ys
 inverse' xs ys = inverse' (tailAll xs) $ ys ++ [headAll xs]
 
-tailAll :: [String] -> [String]
+tailAll:: [String] -> [String]
 tailAll xs = [ tail x | x <- xs, not (null x)]
 
 headAll :: [String] -> String
 headAll xs = [ head x | x <- xs, not (null x)]
+
+tailAllFst:: [(String, String)] -> [(String, String)]
+tailAllFst xs = [ (tail x,y) | (x,y) <- xs, not (null x)]
+
+headAllFst :: [(String, String)] -> String
+headAllFst xs = [ head x | (x,_) <- xs, not (null x)]
 
 inputShort :: [String]
 inputShort =
