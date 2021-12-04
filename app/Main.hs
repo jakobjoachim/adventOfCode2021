@@ -4,4 +4,4 @@ import Days.Day4
 
 main :: IO ()
 main = do
-  print runTask
+  print runTaskTwo
