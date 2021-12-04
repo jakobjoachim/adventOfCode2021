@@ -1,4 +1,4 @@
-module Day1 where
+module Days.Day1 where
 
 runTaskOne :: Int
 runTaskOne = length $ filterTuplesRightBiggerLeft $ pairWithNextNumber inputLong

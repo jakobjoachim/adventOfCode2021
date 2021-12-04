@@ -1,10 +1,10 @@
 name:                adventOfCode2021
 version:             0.1.0.0
-github:              "githubuser/adventOfCode2021"
-license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2021 Author name here"
+github:              "jakobjoachim/adventOfCode2021"
+license:             WTFPL
+author:              "Jakob Joachim"
+maintainer:          "mail@jakobjoachim.com"
+copyright:           "2021 Jakob Joachim"
 
 extra-source-files:
 - README.md
@@ -28,7 +28,8 @@ library:
 executables:
   adventOfCode2021-exe:
     main:                Main.hs
-    source-dirs:         app
+    source-dirs:
+    - app
     ghc-options:
     - -threaded
     - -rtsopts
@@ -46,3 +47,5 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - adventOfCode2021
+    - hspec
+    - QuickCheck

@@ -1,8 +1,7 @@
 module Main where
-
-import Day3
+  
+import Days.Day4
 
 main :: IO ()
 main = do
   print runTask
-

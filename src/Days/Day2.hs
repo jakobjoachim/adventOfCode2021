@@ -1,4 +1,4 @@
-module Day2 where
+module Days.Day2 where
 
 runTask :: Int
 runTask = uncurry (*) $ position $ positionArray inputLong

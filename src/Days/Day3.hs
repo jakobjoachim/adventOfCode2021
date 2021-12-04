@@ -1,4 +1,4 @@
-module Day3 where
+module Days.Day3 where
 
 runTask :: Int
 runTask = co2 [(x,x) | x <- inputLong] * oxygen [(x,x) | x <- inputLong]
@@ -25,19 +25,6 @@ countListOccurrences :: Eq a => [a] -> a -> Int
 countListOccurrences [] _ = 0
 countListOccurrences xs find = length ys
     where ys = [y | y <- xs, y == find]
-
-inverse :: [String] -> [String]
-inverse xs = inverse' xs []
-
-inverse' :: [String] -> [String] -> [String]
-inverse' [] ys = init ys
-inverse' xs ys = inverse' (tailAll xs) $ ys ++ [headAll xs]
-
-tailAll:: [String] -> [String]
-tailAll xs = [ tail x | x <- xs, not (null x)]
-
-headAll :: [String] -> String
-headAll xs = [ head x | x <- xs, not (null x)]
 
 tailAllFst:: [(String, String)] -> [(String, String)]
 tailAllFst xs = [ (tail x,y) | (x,y) <- xs, not (null x)]
