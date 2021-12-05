@@ -29,8 +29,11 @@ library
       Days.Day2
       Days.Day3
       Days.Day4
+      Days.Day5
       Input.Day4Input
       Input.Day4InputShort
+      Input.Day5Input
+      Input.Day5InputShort
       Lib
   other-modules:
       Paths_adventOfCode2021
@@ -57,6 +60,7 @@ test-suite adventOfCode2021-test
   main-is: Spec.hs
   other-modules:
       Days.Day4Spec
+      Days.Day5Spec
       LibSpec
       Paths_adventOfCode2021
   hs-source-dirs:

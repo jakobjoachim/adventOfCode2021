@@ -1,7 +1,7 @@
 module Main where
   
-import Days.Day4
+import Days.Day5
 
 main :: IO ()
 main = do
-  print runTaskTwo
+  print runTask

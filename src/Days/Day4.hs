@@ -5,8 +5,8 @@ import Lib
 import Data.List
 import Data.Maybe
 
-type  Board = [Row]
-type  Row = [Int]
+type Board = [Row]
+type Row = [Int]
 
 runTask :: Maybe Int
 runTask = bingo boards input
