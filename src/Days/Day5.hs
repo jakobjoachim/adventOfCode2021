@@ -1,14 +1,14 @@
 module Days.Day5 where
 
 import Input.Day5Input
-import Data.List (nub)
+import Data.Set (fromList)
   
 type Coordinate = (Int, Int)
 
 runTask :: Int
 runTask = 
    let x = allCoords input
-   in length x - length (nub x)
+   in length x  - length (fromList x)
 
 allCoords :: [(Coordinate, Coordinate)] -> [Coordinate]
 allCoords xs = concat [allCoords' x [] | x <- xs]
