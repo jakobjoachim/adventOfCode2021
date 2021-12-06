@@ -1,11 +1,13 @@
 module Days.Day6 where
 
-import Data.List.Utils
+import Data.List (sortBy)
 import Input.Day6Input
+import Lib
 
 runTask :: Int
-runTask = length (nextDay input 80)
+runTask = sum $ nextDay 256 $ 0 : [b | (_, b) <- sortBy (\(a, _) (b, _) -> compare a b) $ numberOfOccurrences input] ++ [0, 0, 0, 0]
 
-nextDay :: [Int] -> Int -> [Int]
-nextDay xs 0 = xs
-nextDay xs y = nextDay ([ if x == 0 then 6 else x-1 | x <- xs] ++ replicate (countElem 0 xs) 8) (y-1)
+nextDay :: Int -> [Int] -> [Int]
+nextDay 0 xs = xs
+nextDay y (x : xs) = nextDay (y - 1) $ take 6 xs ++ [(xs !! 6) + x] ++ [xs !! 7] ++ [x]
+nextDay _ [] = []
