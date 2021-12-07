@@ -31,12 +31,14 @@ library
       Days.Day4
       Days.Day5
       Days.Day6
+      Days.Day7
       Input.Day4Input
       Input.Day4InputShort
       Input.Day5Input
       Input.Day5InputShort
       Input.Day6Input
       Input.Day6InputShort
+      Input.Day7Input
       Lib
   other-modules:
       Paths_adventOfCode2021
