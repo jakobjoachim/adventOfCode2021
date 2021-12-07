@@ -36,17 +36,13 @@ library
       Input.Day4InputShort
       Input.Day5Input
       Input.Day5InputShort
-      Input.Day6Input
-      Input.Day6InputShort
-      Input.Day7Input
       Lib
   other-modules:
       Paths_adventOfCode2021
   hs-source-dirs:
       src
   build-depends:
-      MissingH >=1.4.3.0
-    , base >=4.7 && <5
+      base >=4.7 && <5
     , containers >=0.6.5.1
   default-language: Haskell2010
 

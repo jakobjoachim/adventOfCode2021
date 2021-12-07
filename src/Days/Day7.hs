@@ -1,9 +1,7 @@
 module Days.Day7 where
 
-import Input.Day7Input
-
-runTask :: Int
-runTask = run input 0 maxBound 
+runTask :: [Int] ->  Int
+runTask input = run input 0 maxBound 
 
 -- input goal currentMin
 run :: [Int] -> Int -> Int -> Int
