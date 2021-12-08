@@ -49,5 +49,6 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - adventOfCode2021
+    - containers >= 0.6.5.1
     - hspec
     - QuickCheck
