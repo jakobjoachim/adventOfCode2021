@@ -1,8 +1,10 @@
-module Lib (replace, rotate, numberOfOccurrences, splitOn, readFileAsNumberArray, findFirst) where
+module Lib (replace, rotate, numberOfOccurrences, splitOn, readFileAsNumberArray, findFirst, sortByLength) where
 
 import Text.Read (readMaybe)
 import Data.Maybe (mapMaybe)
 import Data.Set (Set, fromList)
+import Data.Char (digitToInt)
+import Data.List (sortBy)
 
 
 -- replace all matching elements in list with something else
@@ -31,15 +33,15 @@ numberOfOccurrences' :: Eq b => [(b, Int)] -> [b] -> [(b, Int)]
 numberOfOccurrences' ys [] = ys
 numberOfOccurrences' ys xs = let zs = filter (/= head xs) xs
                              in numberOfOccurrences' ((head xs, length xs - length zs) : ys) zs
-                             
+
 splitOn     :: (Char -> Bool) -> String -> [String]
 splitOn p s =  case dropWhile p s of
                       "" -> []
                       s' -> w : splitOn p s''
                             where (w, s'') = break p s'
 
-readFileAsNumberArray :: String -> [Int]
-readFileAsNumberArray = mapMaybe readInt . splitOn (==',')
+readFileAsNumberArray :: String -> [[Int]]
+readFileAsNumberArray xs = [map digitToInt line | line <- splitOn (=='\n') xs]
 
 readInt :: String -> Maybe Int
 readInt = readMaybe

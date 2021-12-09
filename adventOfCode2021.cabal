@@ -33,6 +33,8 @@ library
       Days.Day6
       Days.Day7
       Days.Day8
+      Days.Day9
+      Days.Day9Task2
       Input.Day4Input
       Input.Day4InputShort
       Input.Day5Input
