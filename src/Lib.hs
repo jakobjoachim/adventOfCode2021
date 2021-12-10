@@ -1,11 +1,10 @@
-module Lib (replace, rotate, numberOfOccurrences, splitOn, readFileAsNumberArray, findFirst, sortByLength) where
+module Lib (replace, rotate, numberOfOccurrences, splitOn, readFileAsNumberArray, findFirst) where
 
 import Text.Read (readMaybe)
 import Data.Maybe (mapMaybe)
 import Data.Set (Set, fromList)
 import Data.Char (digitToInt)
 import Data.List (sortBy)
-
 
 -- replace all matching elements in list with something else
 replace :: Eq b => b -> b -> [b] -> [b]
