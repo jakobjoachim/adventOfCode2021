@@ -17,10 +17,10 @@ foldString = foldl foldingFunction []
               foldingFunction ('<':xs) '>' = xs
               foldingFunction ('{':xs) '}' = xs
               foldingFunction ('[':xs) ']' = xs
-              foldingFunction (_:xs) ')' = ')':'x':xs
-              foldingFunction (_:xs) '>' = '>':'x':xs
-              foldingFunction (_:xs) '}' = '}':'x':xs
-              foldingFunction (_:xs) ']' = ']':'x':xs
+              foldingFunction (  _:xs) ')' = ')':'x':xs
+              foldingFunction (  _:xs) '>' = '>':'x':xs
+              foldingFunction (  _:xs) '}' = '}':'x':xs
+              foldingFunction (  _:xs) ']' = ']':'x':xs
               foldingFunction xs next = next:xs
 
 getValue :: String -> Int

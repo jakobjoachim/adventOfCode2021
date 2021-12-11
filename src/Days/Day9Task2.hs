@@ -2,7 +2,6 @@ module Days.Day9Task2 where
 
 import Data.Set (Set, elemAt, empty, fromList, union, member, delete, deleteAt, difference, filter)
 import Prelude hiding (filter)
-import Lib
 import Data.List (sort)
 
 type Matrix = [[Int]]
@@ -14,7 +13,7 @@ runTask m = product $ take 3 $ reverse $ sort (findBasins m empty 0 (coordinateS
 findBasins :: Matrix -> Set Coordinate -> Int -> Set Coordinate -> [Int] -> [Int]
 findBasins _ coordsToDo basinCount remaining result | coordsToDo == empty && remaining == empty  = basinCount : result
 findBasins m coordsToDo basinCount remaining result | coordsToDo == empty                        = findBasins m (fromList [elemAt 0 remaining]) 0 (deleteAt 0 remaining) (basinCount : result)
-findBasins m coordsToDo basinCount remaining result | m `at` elemAt 0 coordsToDo == 9            = findBasins m empty 0 remaining result
+findBasins m coordsToDo _          remaining result | m `at` elemAt 0 coordsToDo == 9            = findBasins m empty 0 remaining result
 findBasins m coordsToDo basinCount remaining result                                              =
   let currentCoord  = elemAt 0 coordsToDo
       neighbours    = findNeighbours remaining currentCoord
