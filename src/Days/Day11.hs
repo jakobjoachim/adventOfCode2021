@@ -1,9 +1,19 @@
 module Days.Day11 where
 
+import Lib (rmdups)
 import Matrix
 
-runTask :: [[Int]] -> Int
-runTask = sum . map counter . applyNTimes 100 (propagateNines . incrementAll) . fromList
+runTaskOne :: [[Int]] -> Int
+runTaskOne = sum . map counter . applyNTimes 100 (propagateNines . incrementAll) . fromList
+
+runTaskTwo :: [[Int]] -> Int
+runTaskTwo = runUntilSync 0 . fromList
+
+runUntilSync :: Int -> Matrix -> Int
+runUntilSync c m =
+  if 1 == length (rmdups $ map value m)
+    then c
+    else runUntilSync (c + 1) (propagateNines $ incrementAll m)
 
 applyNTimes :: Int -> (a -> a) -> a -> a
 applyNTimes n f x = iterate f x !! n
@@ -15,8 +25,7 @@ propagateNines :: Matrix -> Matrix
 propagateNines matrix =
   if not $ matrix `elementWithValueExists` 10
     then matrix
-    else
-      propagateNines $ applySurroundingCoords (applyNines matrix) (surroundingCoords matrix)
+    else propagateNines $ applySurroundingCoords (applyNines matrix) (surroundingCoords matrix)
 
 surroundingCoords :: Matrix -> [(Int, Int)]
 surroundingCoords m =

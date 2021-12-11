@@ -1,10 +1,7 @@
-module Lib (replace, rotate, numberOfOccurrences, splitOn, readFileAsNumberArray, findFirst) where
+module Lib (replace, rotate, numberOfOccurrences, splitOn, readFileAsNumberArray, findFirst, rmdups) where
 
-import Text.Read (readMaybe)
-import Data.Maybe (mapMaybe)
-import Data.Set (Set, fromList)
 import Data.Char (digitToInt)
-import Data.List (sortBy)
+import Data.List (group, sort)
 
 -- replace all matching elements in list with something else
 replace :: Eq b => b -> b -> [b] -> [b]
@@ -42,11 +39,8 @@ splitOn p s =  case dropWhile p s of
 readFileAsNumberArray :: String -> [[Int]]
 readFileAsNumberArray xs = [map digitToInt line | line <- splitOn (=='\n') xs]
 
-readInt :: String -> Maybe Int
-readInt = readMaybe
+rmdups :: (Ord a) => [a] -> [a]
+rmdups = map head . group . sort
 
 findFirst :: (a -> Bool) -> [a] -> a
 findFirst a xs = head (filter a xs)
-
-mapToSetList :: [String] -> [Set Char]
-mapToSetList xs = [fromList x | x <- xs]

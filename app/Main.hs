@@ -6,4 +6,4 @@ import Lib
 main :: IO ()
 main = do
   content <- readFile "resources/Day11.txt"
-  print $ runTask $ readFileAsNumberArray content
+  print $ runTaskTwo $ readFileAsNumberArray content
