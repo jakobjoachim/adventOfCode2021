@@ -1,4 +1,4 @@
-module Lib (replace, rotate, numberOfOccurrences, splitOn, readFileAsNumberArray, findFirst, rmdups) where
+module Lib (replace, rotate, numberOfOccurrences, splitOn, readFileAsNumberArray, findFirst, rmdups, readFileAsPairOfStrings) where
 
 import Data.Char (digitToInt)
 import Data.List (group, sort)
@@ -38,6 +38,9 @@ splitOn p s =  case dropWhile p s of
 
 readFileAsNumberArray :: String -> [[Int]]
 readFileAsNumberArray xs = [map digitToInt line | line <- splitOn (=='\n') xs]
+
+readFileAsPairOfStrings :: String -> [(String,String)]
+readFileAsPairOfStrings xs = [(head $ splitOn (=='-') line, splitOn (=='-') line !! 1) | line <- splitOn (=='\n') xs]
 
 rmdups :: (Ord a) => [a] -> [a]
 rmdups = map head . group . sort
