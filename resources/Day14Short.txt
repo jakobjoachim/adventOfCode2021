@@ -1,0 +1,20 @@
+CH -> B
+HH -> N
+CB -> H
+NH -> C
+HB -> C
+HC -> B
+HN -> C
+NN -> C
+BH -> H
+NC -> B
+NB -> B
+BN -> B
+BB -> N
+BC -> B
+CC -> N
+CN -> C
+
+NN -> NC; CN
+NC -> NB; BC = 2C 2N 2B 1H
+CB -> CH; HB
